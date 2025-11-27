@@ -1,120 +1,76 @@
 #include "transport_catalogue.h"
-#include "geo.h"
+#include <unordered_set>
 #include <algorithm>
 
-size_t CombineHash(size_t current_hash, size_t next_component_hash) {
-	return current_hash * P + next_component_hash;
+void TransportCatalogue::AddStop(const std::string& name, double latitude, double longitude) {
+    stops_.emplace(name, Stop{ name, latitude, longitude });
 }
 
-size_t StopHasher::operator()(const Stop& stop) const {
-	size_t hash = 0;
-	hash = CombineHash(hash, string_hasher(stop.name_));
-	hash = CombineHash(hash, int_hasher(stop.latitude_));
-	hash = CombineHash(hash, int_hasher(stop.longitude_));
-	return hash;
+void TransportCatalogue::AddBus(const std::string& number, const std::vector<std::string>& stop_names, bool is_ring) {
+    Bus bus;
+    bus.number = number;
+    bus.route = stop_names; 
+    bus.is_ring = is_ring;
+
+    buses_.emplace(number, std::move(bus));
 }
 
-size_t BusHasher::operator()(const Bus& bus) const {
-	size_t hash = 0;
-	hash = CombineHash(hash, string_hasher(bus.number_));
-	for (size_t i = 0; i < bus.route_.size(); ++i) {
-		hash = CombineHash(hash, string_hasher(bus.route_[i]));
-	}
-	return hash;
+std::optional<const Stop*> TransportCatalogue::GetStop(const std::string& name) const {
+    auto it = stops_.find(name);
+    if (it != stops_.end()) return &it->second;
+    return std::nullopt;
 }
 
-void TransportCatalogue::AddStop(std::string&& stop_name, double latitude, double longitude) {
-	Stop stop;
-	stop.name_ = std::move(stop_name);
-	stop.latitude_ = latitude;
-	stop.longitude_ = longitude;
-	stops_.insert(std::move(stop));
-}
-void TransportCatalogue::AddBus(std::string&& number, std::vector<std::string>&& route) {
-	Bus bus;
-	bus.number_ = std::move(number);
-	bus.route_ = std::move(route);
-	buss_.insert(std::move(bus));
+std::optional<const Bus*> TransportCatalogue::GetBus(const std::string& number) const {
+    auto it = buses_.find(number);
+    if (it != buses_.end()) return &it->second;
+    return std::nullopt;
 }
 
-std::string TransportCatalogue::Substring(const std::string_view stop_name) {
-	std::string word;
-	size_t start = stop_name.find_first_not_of(" ");
-	size_t end = stop_name.find_last_not_of(" ");
-	word = stop_name.substr(start, end - start + 1);
-	return word;
+double TransportCatalogue::CalculateRouteLength(const Bus* bus) const {
+    if (!bus || bus->route.empty()) return 0.0;
+    double distance = 0.0;
+
+    for (size_t i = 0; i + 1 < bus->route.size(); ++i) {
+        auto stop1 = GetStop(bus->route[i]);
+        auto stop2 = GetStop(bus->route[i + 1]);
+        if (stop1 && stop2) {
+            distance += ComputeDistance(
+                { (*stop1)->latitude, (*stop1)->longitude },
+                { (*stop2)->latitude, (*stop2)->longitude }
+            );
+        }
+    }
+
+    if (!bus->is_ring && bus->route.size() > 1) {
+        for (size_t i = bus->route.size() - 1; i >= 1; --i) {
+            auto stop1 = GetStop(bus->route[i]);
+            auto stop2 = GetStop(bus->route[i - 1]);
+            if (stop1 && stop2) {
+                distance += ComputeDistance(
+                    { (*stop1)->latitude, (*stop1)->longitude },
+                    { (*stop2)->latitude, (*stop2)->longitude }
+                );
+            }
+        }
+    }
+
+    return distance;
 }
 
-std::optional<Stop> TransportCatalogue::SearchStop(const std::string_view stop_name) {
-	std::string word = Substring(stop_name);
-	for (const Stop&  stop: stops_) {
-		if (stop.name_ == word) {
-			return stop;
-		}
-	}
-	return std::nullopt;
+size_t TransportCatalogue::CountUniqueStops(const Bus* bus) const {
+    std::unordered_set<std::string> unique;
+    for (const auto& stop_name : bus->route) {
+        if (stops_.count(stop_name)) {
+            unique.insert(stop_name);
+        }
+    }
+    return unique.size();
 }
 
-std::optional<std::vector<std::string>> TransportCatalogue::SearchBus(const std::string_view bus_name) {
-	for (const Bus& bus : buss_) {
-		if (bus.number_ == bus_name) {
-			return bus.route_;
-		}
-	}
-	return std::nullopt;
-}
-
-size_t TransportCatalogue::GetUniqueStops(std::vector<std::string> stops) {
-	std::sort(stops.begin(), stops.end());
-	auto it = std::unique(stops.begin(), stops.end());
-	stops.erase(it, stops.end());
-	return stops.size();
-}
-
-
-double TransportCatalogue::CalculateFullDistance(std::vector<std::string>& stops_names) {
-	if (stops_names.empty()) {
-		return 0.0;
-	}
-
-	double one_way_distance = 0.0;
-
-	// Шаг 1: Считаем расстояние в одну сторону для всех сегментов
-	// Используем stops_names[i] и stops_names[i + 1]
-	for (size_t i = 0; i < stops_names.size() - 1; ++i) {
-
-		// 1. Поиск остановок
-		std::optional<Stop> stop1 = SearchStop(stops_names[i]);
-		std::optional<Stop> stop2 = SearchStop(stops_names[i + 1]);
-
-		// 2. Проверка наличия и расчет
-		if (stop1.has_value() && stop2.has_value()) {
-
-			// Инициализация Coordinates (без префикса geo::)
-			Coordinates cd1{ stop1.value().latitude_, stop1.value().longitude_ };
-			Coordinates cd2{ stop2.value().latitude_, stop2.value().longitude_ };
-
-			// Вызов ComputeDistance (без префикса geo::)
-			one_way_distance += ComputeDistance(cd1, cd2);
-		}
-	}
-
-	// Шаг 2: Применяем логику ТЗ (умножение на 2.0 только для некольцевых маршрутов)
-	double final_distance = one_way_distance;
-
-	// Некольцевой маршрут: первая остановка != последней (едем туда и обратно)
-	if (stops_names[0] != stops_names.back()) {
-		// ТЗ: A-B-C -> Dist(AB) + Dist(BC) + Dist(CB) + Dist(BA) = 2 * (Dist(AB) + Dist(BC))
-		final_distance *= 2.0;
-	}
-	// Кольцевой маршрут: первая == последней (полная длина уже посчитана)
-
-	return final_distance;
-}
-
-size_t TransportCatalogue::GetStopsCount() const {
-	return stops_.size();
-}
-size_t TransportCatalogue::GetBussCount() const {
-	return buss_.size();
+size_t TransportCatalogue::CountStopsOnRoute(const Bus* bus) const {
+    if (!bus) return 0;
+    if (bus->is_ring) return bus->route.size();
+    if (bus->route.size() <= 1) return bus->route.size();
+    return bus->route.size() * 2 - 1;
 }

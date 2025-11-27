@@ -1,14 +1,16 @@
 #pragma once
-#include <iostream>
-#include <string>
 #include <vector>
-#include "input_reader.h"
+#include <string>
+#include <iostream>
 #include "transport_catalogue.h"
+#include "input_reader.h"
 
 class StatReader {
 public:
-	StatReader();
-	void ParseAndPrintStat(TransportCatalogue& tc);
+    StatReader() = default;
+
+    void ParseAndPrintStat(TransportCatalogue& tc);
+
 private:
-	InputReader input_reader_;
+    InputReader input_reader_;
 };

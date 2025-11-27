@@ -1,78 +1,37 @@
 #pragma once
+
 #include <string>
 #include <vector>
-#include <optional>
+#include <unordered_map>
 #include <unordered_set>
-
-const size_t P = 37;
+#include <optional>
+#include "geo.h"
 
 struct Stop {
-	Stop() = default;
-	Stop(const Stop&) = default;
-	Stop(Stop&&) = default;
-	Stop& operator=(const Stop& stop) {
-		name_ = stop.name_;
-		latitude_ = stop.latitude_;
-		longitude_ = stop.longitude_;
-		return *this;
-	}
-	Stop& operator=(Stop&&) = default;
-	bool operator==(const Stop& other) const {
-		return name_ == other.name_ && latitude_ == other.latitude_ && longitude_ == other.longitude_;
-	}
-
-	std::string name_;
-	double latitude_;
-	double longitude_;
+    std::string name;
+    double latitude = 0.0;
+    double longitude = 0.0;
 };
 
 struct Bus {
-	Bus() = default;
-	Bus(const Bus&) = default;
-	Bus(Bus&&) = default;
-	Bus& operator=(const Bus& bus) {
-		number_ = bus.number_;
-		route_ = bus.route_;
-		return *this;
-	}
-	Bus& operator=(Bus&&) = default;
-	bool operator==(const Bus& other) const {
-		return number_ == other.number_ && route_ == other.route_;
-	}
-
-	std::string number_;
-	std::vector<std::string> route_;
+    std::string number;
+    std::vector<std::string> route;
+    bool is_ring = false;
 };
 
-struct StopHasher {
-public:
-	size_t operator()(const Stop& stop) const;
-private:
-	std::hash<std::string> string_hasher;
-	std::hash<double> int_hasher;
-};
 
-struct BusHasher {
-public:
-	size_t operator()(const Bus& bus) const;
-private:
-	std::hash<std::string> string_hasher;
-};
 
 class TransportCatalogue {
 public:
-	void AddStop(std::string&& stop_name, double lotitude, double longitude);
-	void AddBus(std::string&& number, std::vector<std::string>&& route);
-	std::optional<Stop> SearchStop(const std::string_view stop_name);
-	std::optional<std::vector<std::string>> SearchBus(const std::string_view bus_name);
-	std::string Substring(const std::string_view stop_name);
-	double CalculateFullDistance(std::vector<std::string>& stops_names);
-	size_t GetUniqueStops(std::vector<std::string> stops);
-	size_t GetStopsCount() const;
-	size_t GetBussCount() const;
-private:
-	std::unordered_set<Stop, StopHasher> stops_;
-	std::unordered_set<Bus, BusHasher> buss_;
-};
+    void AddStop(const std::string& name, double latitude, double longitude);
+    void AddBus(const std::string& number, const std::vector<std::string>& stop_names, bool is_ring);
+    std::optional<const Stop*> GetStop(const std::string& name) const;
+    std::optional<const Bus*> GetBus(const std::string& number) const;
+    double CalculateRouteLength(const Bus* bus) const;
+    size_t CountUniqueStops(const Bus* bus) const;
+    size_t CountStopsOnRoute(const Bus* bus) const;
 
-size_t CombineHash(size_t current_hash, size_t nex_component_hash);
+private:
+    std::unordered_map<std::string, Stop> stops_;
+    std::unordered_map<std::string, Bus> buses_;
+};
