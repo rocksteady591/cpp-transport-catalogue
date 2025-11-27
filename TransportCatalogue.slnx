@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="TransportCatalogue/TransportCatalogue.vcxproj" Id="46b5ece2-fb2b-4263-a666-9ac6c0ce3726" />
+</Solution>
