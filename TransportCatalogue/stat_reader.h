@@ -9,8 +9,8 @@ class StatReader {
 public:
     StatReader() = default;
 
-    void ParseAndPrintStat(TransportCatalogue& tc);
+    void ParseAndPrintStat(transport::TransportCatalogue& tc);
 
 private:
-    InputReader input_reader_;
+    parce::InputReader input_reader_;
 };

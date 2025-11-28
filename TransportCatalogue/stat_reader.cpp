@@ -1,8 +1,10 @@
 #include "stat_reader.h"
 #include <iomanip>
 #include <sstream>
+#include <algorithm>
+#include "input_reader.h"
 
-void StatReader::ParseAndPrintStat(TransportCatalogue& tc) {
+void StatReader::ParseAndPrintStat(transport::TransportCatalogue& tc) {
     size_t n;
     std::cin >> n;
     std::cin.ignore();
@@ -36,7 +38,7 @@ void StatReader::ParseAndPrintStat(TransportCatalogue& tc) {
                 std::cout << "Bus " << bus_name << ": not found\n";
                 continue;
             }
-            const Bus* bus = *bus_opt;
+            const transport::Bus* bus = *bus_opt;
             size_t stops_on_route = tc.CountStopsOnRoute(bus);
             size_t unique_stops = tc.CountUniqueStops(bus);
             double length = tc.CalculateRouteLength(bus);
@@ -45,6 +47,32 @@ void StatReader::ParseAndPrintStat(TransportCatalogue& tc) {
             std::cout << "Bus " << bus_name << ": " << stops_on_route
                 << " stops on route, " << unique_stops
                 << " unique stops, " << length << " route length\n";
+        }
+        else if (query.substr(0, 4) == "Stop") {
+            parce::InputReader ip;
+            std::string stop_name_raw = query.substr(5); 
+            std::string stop_name = ip.Trim(stop_name_raw); 
+
+            std::optional<std::unordered_set<std::string>> res_opt = tc.GetStopInformation(stop_name);
+
+            if (!res_opt.has_value()) {
+                std::cout << "Stop " << stop_name << ": not found" << "\n";
+                continue;
+            }
+
+            const::std::unordered_set<std::string>& bus_set = res_opt.value();
+
+            if (res_opt.value().empty()) {
+                std::cout << query << ": no buses" << "\n";
+                continue;
+            }
+            std::vector<std::string> sort_res(bus_set.begin(), bus_set.end());
+            std::sort(sort_res.begin(), sort_res.end());
+            std::cout << query << ": buses";
+            for (const std::string& num : sort_res) {
+                std::cout << " " << num;
+            }
+            std::cout << "\n";
         }
     }
 }

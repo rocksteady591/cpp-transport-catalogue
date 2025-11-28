@@ -2,7 +2,7 @@
 #include "transport_catalogue.h"
 
 int main() {
-    TransportCatalogue tc;
+    transport::TransportCatalogue tc;
     StatReader().ParseAndPrintStat(tc);
     return 0;
 }

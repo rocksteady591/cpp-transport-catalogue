@@ -3,13 +3,14 @@
 #include <string>
 #include "transport_catalogue.h"
 
-class InputReader {
-public:
-    InputReader() = default;
+namespace parce {
+    class InputReader {
+    public:
+        InputReader() = default;
 
-    // Обработка запросов Stop и Bus для заполнения справочника
-    void ParseLines(const std::vector<std::string>& lines, TransportCatalogue& tc);
+        void ParseLines(const std::vector<std::string>& lines, transport::TransportCatalogue& tc);
+        std::string Trim(const std::string& str) const;
 
-private:
-    std::string Trim(const std::string& str) const;
-};
+    };
+}
+

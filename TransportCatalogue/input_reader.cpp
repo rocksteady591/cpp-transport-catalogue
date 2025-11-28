@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cctype>
 
-void InputReader::ParseLines(const std::vector<std::string>& lines, TransportCatalogue& tc) {
+void parce::InputReader::ParseLines(const std::vector<std::string>& lines, transport::TransportCatalogue& tc) {
     for (const auto& line : lines) {
         if (line.empty()) continue;
 
@@ -37,7 +37,7 @@ void InputReader::ParseLines(const std::vector<std::string>& lines, TransportCat
     }
 }
 
-std::string InputReader::Trim(const std::string& str) const {
+std::string parce::InputReader::Trim(const std::string& str) const {
     size_t start = str.find_first_not_of(' ');
     size_t end = str.find_last_not_of(' ');
     if (start == std::string::npos || end == std::string::npos)
