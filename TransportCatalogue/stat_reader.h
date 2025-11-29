@@ -9,7 +9,7 @@ class StatReader {
 public:
     StatReader() = default;
 
-    void ParseAndPrintStat(transport::TransportCatalogue& tc);
+    void ParseAndPrintStat(std::istream& in, std::ostream& out, transport::TransportCatalogue& tc);
 
 private:
     parce::InputReader input_reader_;

@@ -15,7 +15,8 @@ void parce::InputReader::ParseLines(const std::vector<std::string>& lines, trans
             double lat = std::stod(line.substr(colon + 1, comma - colon - 1));
             double lng = std::stod(line.substr(comma + 1));
 
-            tc.AddStop(stop_name, lat, lng);
+            const transport::Coordinate cd{ lat, lng };
+            tc.AddStop(stop_name, cd);
         }
         else if (line.substr(0, 3) == "Bus") {
             size_t colon = line.find(':');
@@ -43,4 +44,20 @@ std::string parce::InputReader::Trim(const std::string& str) const {
     if (start == std::string::npos || end == std::string::npos)
         return "";
     return str.substr(start, end - start + 1);
+}
+
+void parce::InputReader::FillCatalogue(std::istream& in, transport::TransportCatalogue& tc) {
+    size_t n;
+    in >> n;
+    in.ignore();
+
+    std::vector<std::string> lines;
+    lines.reserve(n);
+    std::string line;
+    for (size_t i = 0; i < n; ++i) {
+        std::getline(in, line);
+        lines.push_back(line);
+    }
+
+    ParseLines(lines, tc);
 }

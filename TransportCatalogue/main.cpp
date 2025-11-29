@@ -3,8 +3,7 @@
 
 int main() {
     transport::TransportCatalogue tc;
-    StatReader().ParseAndPrintStat(tc);
+    StatReader sr;
+    sr.ParseAndPrintStat(std::cin, std::cout, tc);
     return 0;
 }
-
-
