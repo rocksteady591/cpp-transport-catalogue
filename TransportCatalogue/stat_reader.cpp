@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <sstream>
 #include <algorithm>
-#include <tuple>
 
 void StatReader::ParseAndPrintStat(std::istream& in, std::ostream& out, transport::TransportCatalogue& tc) {
     input_reader_.FillCatalogue(in, tc);
@@ -27,12 +26,12 @@ void StatReader::ParseAndPrintStat(std::istream& in, std::ostream& out, transpor
                 out << "Bus " << bus_name << ": not found\n";
                 continue;
             }
-            const std::tuple<double, size_t, size_t> bus_info = tc.GetBusInfo(bus);
+            const transport::TransportCatalogue::BusStats bus_info = tc.GetBusInfo(bus);
 
             out << std::fixed << std::setprecision(6);
-            out << "Bus " << bus_name << ": " << std::get<2>(bus_info)
-                << " stops on route, " << std::get<1>(bus_info)
-                << " unique stops, " << std::get<0>(bus_info) << " route length\n";
+            out << "Bus " << bus_name << ": " << bus_info.stops_on_route
+                << " stops on route, " << bus_info.unique_stops
+                << " unique stops, " << bus_info.route_length << " route length\n";
         }
         else if (query.substr(0, 4) == "Stop") {
             std::string stop_name = query.substr(5);
@@ -40,7 +39,7 @@ void StatReader::ParseAndPrintStat(std::istream& in, std::ostream& out, transpor
 
             const auto& buses_opt = tc.GetStopInformation(stop_name);
 
-            if (!buses_opt.has_value()) {
+            if (buses_opt == nullptr) {
                 out << "Stop " << stop_name << ": not found\n";
                 continue;
             }

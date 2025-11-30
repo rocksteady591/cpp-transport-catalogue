@@ -6,7 +6,6 @@
 #include <optional>
 #include <set>
 #include "geo.h"
-#include <tuple>
 
 namespace transport {
 
@@ -40,9 +39,9 @@ namespace transport {
         const Stop* GetStop (std::string_view name) const;
         const Bus* GetBus (std::string_view number) const;
         std::optional<BusStats> GetBusStatistics(const std::string_view number) const;
-        //не добавляю тут ссылку т.к это и так временный объект
-        const std::optional<std::set<std::string_view>> GetStopInformation(const std::string_view stop_name) const;
-        const std::tuple<double, size_t, size_t> GetBusInfo(const Bus* bus) const;
+        
+        const std::set<std::string_view>* GetStopInformation(const std::string_view stop_name) const;
+        const BusStats GetBusInfo(const Bus* bus) const;
         
 
     private:

@@ -82,24 +82,24 @@ namespace transport {
         return bus->route.size() * 2 - 1;
     }
 
-    const std::optional<std::set<std::string_view>> TransportCatalogue::GetStopInformation(const std::string_view stop_name) const {
+    const std::set<std::string_view>* TransportCatalogue::GetStopInformation(const std::string_view stop_name) const {
+        static const std::set<std::string_view> empty_set;
         if (GetStop(stop_name) == nullptr) {
-            return std::nullopt;
+            return nullptr;
         }
-
         auto it = stop_to_buses_.find(std::string(stop_name));
         if (it == stop_to_buses_.end()) {
-            return std::set<std::string_view>{};
+            return &empty_set;
         }
-        return it->second;
+        return &it->second;
     }
 
-    const std::tuple<double, size_t, size_t> TransportCatalogue::GetBusInfo(const Bus* bus) const
+    const transport::TransportCatalogue::BusStats TransportCatalogue::GetBusInfo(const Bus* bus) const
     {
         double length = CalculateRouteLength(bus);
         size_t count_unique_stops = CountUniqueStops(bus);
         size_t count_stops_on_route = CountStopsOnRoute(bus);
-        return { length, count_unique_stops, count_stops_on_route };
+        return { count_stops_on_route , count_unique_stops,  length };
     }
 
 } 
