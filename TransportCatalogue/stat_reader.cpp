@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <sstream>
 #include <algorithm>
+#include <tuple>
 
 void StatReader::ParseAndPrintStat(std::istream& in, std::ostream& out, transport::TransportCatalogue& tc) {
     input_reader_.FillCatalogue(in, tc);
@@ -26,14 +27,12 @@ void StatReader::ParseAndPrintStat(std::istream& in, std::ostream& out, transpor
                 out << "Bus " << bus_name << ": not found\n";
                 continue;
             }
-            size_t stops_on_route = tc.CountStopsOnRoute(bus);
-            size_t unique_stops = tc.CountUniqueStops(bus);
-            double length = tc.CalculateRouteLength(bus);
+            const std::tuple<double, size_t, size_t> bus_info = tc.GetBusInfo(bus);
 
             out << std::fixed << std::setprecision(6);
-            out << "Bus " << bus_name << ": " << stops_on_route
-                << " stops on route, " << unique_stops
-                << " unique stops, " << length << " route length\n";
+            out << "Bus " << bus_name << ": " << std::get<2>(bus_info)
+                << " stops on route, " << std::get<1>(bus_info)
+                << " unique stops, " << std::get<0>(bus_info) << " route length\n";
         }
         else if (query.substr(0, 4) == "Stop") {
             std::string stop_name = query.substr(5);

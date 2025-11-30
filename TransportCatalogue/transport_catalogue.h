@@ -6,6 +6,7 @@
 #include <optional>
 #include <set>
 #include "geo.h"
+#include <tuple>
 
 namespace transport {
 
@@ -36,17 +37,19 @@ namespace transport {
         void AddStop(const std::string& name, const Coordinate& coordinate);
         void AddBus(const std::string& number, const std::vector<std::string>& stop_names, bool is_ring);
 
-        const Stop* GetStop(const std::string_view name) const;
-        const Bus* GetBus(const std::string_view number) const;
-
+        const Stop* GetStop (std::string_view name) const;
+        const Bus* GetBus (std::string_view number) const;
         std::optional<BusStats> GetBusStatistics(const std::string_view number) const;
+        //не добавляю тут ссылку т.к это и так временный объект
+        const std::optional<std::set<std::string_view>> GetStopInformation(const std::string_view stop_name) const;
+        const std::tuple<double, size_t, size_t> GetBusInfo(const Bus* bus) const;
+        
+
+    private:
         double CalculateRouteLength(const Bus* bus) const;
         size_t CountUniqueStops(const Bus* bus) const;
         size_t CountStopsOnRoute(const Bus* bus) const;
 
-        std::optional<std::set<std::string_view>> GetStopInformation(const std::string_view stop_name) const;
-
-    private:
         std::unordered_map<std::string, Stop> stops_;
         std::unordered_map<std::string, Bus> buses_;
         std::unordered_map<std::string, std::set<std::string_view>> stop_to_buses_;

@@ -3,7 +3,6 @@
 #include <algorithm>
 
 namespace transport {
-
     void TransportCatalogue::AddStop(const std::string& name, const Coordinate& coordinate) {
         stops_.emplace(name, Stop{ name, coordinate });
     }
@@ -83,7 +82,7 @@ namespace transport {
         return bus->route.size() * 2 - 1;
     }
 
-    std::optional<std::set<std::string_view>> TransportCatalogue::GetStopInformation(const std::string_view stop_name) const {
+    const std::optional<std::set<std::string_view>> TransportCatalogue::GetStopInformation(const std::string_view stop_name) const {
         if (GetStop(stop_name) == nullptr) {
             return std::nullopt;
         }
@@ -93,6 +92,14 @@ namespace transport {
             return std::set<std::string_view>{};
         }
         return it->second;
+    }
+
+    const std::tuple<double, size_t, size_t> TransportCatalogue::GetBusInfo(const Bus* bus) const
+    {
+        double length = CalculateRouteLength(bus);
+        size_t count_unique_stops = CountUniqueStops(bus);
+        size_t count_stops_on_route = CountStopsOnRoute(bus);
+        return { length, count_unique_stops, count_stops_on_route };
     }
 
 } 
