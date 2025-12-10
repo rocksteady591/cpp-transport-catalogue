@@ -1,8 +1,29 @@
 #include "transport_catalogue.h"
 #include <unordered_set>
 #include <algorithm>
+#include <cmath>
 
 namespace transport {
+
+    void TransportCatalogue::SetRoadDistance(const std::string& from_stop, const std::string& to_stop, int distance) {
+        road_distances_[{from_stop, to_stop}] = distance;
+    }
+
+    int TransportCatalogue::GetRoadDistance(const Stop* from_stop, const Stop* to_stop) const {
+        if (!from_stop || !to_stop) return 0;
+
+        auto it = road_distances_.find({ from_stop->name, to_stop->name });
+        if (it != road_distances_.end()) {
+            return it->second;
+        }
+        auto reverse_it = road_distances_.find({ to_stop->name, from_stop->name });
+        if (reverse_it != road_distances_.end()) {
+            return reverse_it->second;
+        }
+
+        return 0;
+    }
+
     void TransportCatalogue::AddStop(const std::string& name, const Coordinate& coordinate) {
         stops_.emplace(name, Stop{ name, coordinate });
     }
@@ -33,7 +54,31 @@ namespace transport {
         return &it->second;
     }
 
-    double TransportCatalogue::CalculateRouteLength(const Bus* bus) const {
+    double TransportCatalogue::CalculateRoadLength(const Bus* bus) const {
+        if (!bus || bus->route.empty()) return 0.0;
+        double distance = 0.0;
+
+        for (size_t i = 0; i + 1 < bus->route.size(); ++i) {
+            auto stop1 = GetStop(bus->route[i]);
+            auto stop2 = GetStop(bus->route[i + 1]);
+            if (stop1 && stop2) {
+                distance += GetRoadDistance(stop1, stop2);
+            }
+        }
+
+        if (!bus->is_ring && bus->route.size() > 1) {
+            for (size_t i = bus->route.size() - 1; i > 0; --i) {
+                auto stop1 = GetStop(bus->route[i]);
+                auto stop2 = GetStop(bus->route[i - 1]);
+                if (stop1 && stop2) {
+                    distance += GetRoadDistance(stop1, stop2);
+                }
+            }
+        }
+        return distance;
+    }
+
+    double TransportCatalogue::CalculateGeoLength(const Bus* bus) const {
         if (!bus || bus->route.empty()) return 0.0;
         double distance = 0.0;
 
@@ -96,10 +141,25 @@ namespace transport {
 
     const transport::TransportCatalogue::BusStats TransportCatalogue::GetBusInfo(const Bus* bus) const
     {
-        double length = CalculateRouteLength(bus);
+        double road_length = CalculateRoadLength(bus);
+        double geo_length = CalculateGeoLength(bus);
+
         size_t count_unique_stops = CountUniqueStops(bus);
         size_t count_stops_on_route = CountStopsOnRoute(bus);
-        return { count_stops_on_route , count_unique_stops,  length };
+
+        double curvature = 0.0;
+        if (geo_length > 1e-6) {
+            curvature = road_length / geo_length;
+        }
+        return { count_stops_on_route , count_unique_stops,  road_length, curvature };
     }
 
-} 
+    std::optional<TransportCatalogue::BusStats> TransportCatalogue::GetBusStatistics(const std::string_view number) const
+    {
+        const Bus* bus = GetBus(number);
+        if (!bus) {
+            return std::nullopt;
+        }
+        return GetBusInfo(bus);
+    }
+}

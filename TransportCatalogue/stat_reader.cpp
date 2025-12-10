@@ -31,7 +31,8 @@ void StatReader::ParseAndPrintStat(std::istream& in, std::ostream& out, transpor
             out << std::fixed << std::setprecision(6);
             out << "Bus " << bus_name << ": " << bus_info.stops_on_route
                 << " stops on route, " << bus_info.unique_stops
-                << " unique stops, " << bus_info.route_length << " route length\n";
+                << " unique stops, " << bus_info.route_length << " route length, "
+                << bus_info.curvature << " curvature\n";
         }
         else if (query.substr(0, 4) == "Stop") {
             std::string stop_name = query.substr(5);
