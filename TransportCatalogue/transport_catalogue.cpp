@@ -5,18 +5,17 @@
 
 namespace transport {
 
-    void TransportCatalogue::SetRoadDistance(const std::string& from_stop, const std::string& to_stop, int distance) {
-        road_distances_[{from_stop, to_stop}] = distance;
+    void TransportCatalogue::SetRoadDistance(const std::string_view from_stop, const std::string_view to_stop, double distance) {
+        road_distances_[{from_stop.data(), to_stop.data()}] = distance;
     }
 
-    int TransportCatalogue::GetRoadDistance(const Stop* from_stop, const Stop* to_stop) const {
-        if (!from_stop || !to_stop) return 0;
+    int TransportCatalogue::GetRoadDistance(const std::string_view from_stop, const std::string_view to_stop) const {
 
-        auto it = road_distances_.find({ from_stop->name, to_stop->name });
+        auto it = road_distances_.find({ from_stop.data(), to_stop.data()});
         if (it != road_distances_.end()) {
             return it->second;
         }
-        auto reverse_it = road_distances_.find({ to_stop->name, from_stop->name });
+        auto reverse_it = road_distances_.find({ to_stop.data(), from_stop.data() });
         if (reverse_it != road_distances_.end()) {
             return reverse_it->second;
         }
@@ -43,13 +42,13 @@ namespace transport {
     }
 
     const Stop* TransportCatalogue::GetStop(const std::string_view name) const {
-        auto it = stops_.find(std::string(name));
+        auto it = stops_.find(name.data());
         if (it == stops_.end()) return nullptr;
         return &it->second;
     }
 
     const Bus* TransportCatalogue::GetBus(const std::string_view number) const {
-        auto it = buses_.find(std::string(number));
+        auto it = buses_.find(number.data());
         if (it == buses_.end()) return nullptr;
         return &it->second;
     }
@@ -62,7 +61,7 @@ namespace transport {
             auto stop1 = GetStop(bus->route[i]);
             auto stop2 = GetStop(bus->route[i + 1]);
             if (stop1 && stop2) {
-                distance += GetRoadDistance(stop1, stop2);
+                distance += GetRoadDistance(stop1->name, stop2->name);
             }
         }
 
@@ -71,7 +70,7 @@ namespace transport {
                 auto stop1 = GetStop(bus->route[i]);
                 auto stop2 = GetStop(bus->route[i - 1]);
                 if (stop1 && stop2) {
-                    distance += GetRoadDistance(stop1, stop2);
+                    distance += GetRoadDistance(stop1->name, stop2->name);
                 }
             }
         }
@@ -132,7 +131,7 @@ namespace transport {
         if (GetStop(stop_name) == nullptr) {
             return nullptr;
         }
-        auto it = stop_to_buses_.find(std::string(stop_name));
+        auto it = stop_to_buses_.find(stop_name.data());
         if (it == stop_to_buses_.end()) {
             return &empty_set;
         }

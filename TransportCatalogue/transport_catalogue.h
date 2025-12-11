@@ -43,8 +43,8 @@ namespace transport {
         void AddStop(const std::string& name, const Coordinate& coordinate);
         void AddBus(const std::string& number, const std::vector<std::string>& stop_names, bool is_ring);
 
-        void SetRoadDistance(const std::string& from_stop, const std::string& to_stop, int distance);
-        int GetRoadDistance(const Stop* from_stop, const Stop* to_stop) const;
+        void SetRoadDistance(const std::string_view from_stop, const std::string_view to_stop, double distance);
+        int GetRoadDistance(const std::string_view from_stop, const std::string_view to_stop) const;
 
         const Stop* GetStop(std::string_view name) const;
         const Bus* GetBus(std::string_view number) const;
@@ -64,7 +64,7 @@ namespace transport {
         std::unordered_map<std::string, Stop> stops_;
         std::unordered_map<std::string, Bus> buses_;
         std::unordered_map<std::string, std::set<std::string_view>> stop_to_buses_;
-        std::unordered_map<std::pair<std::string, std::string>, int, StringPairHasher> road_distances_;
+        std::unordered_map<std::pair<std::string, std::string>, double, StringPairHasher> road_distances_;
     };
 
 }
