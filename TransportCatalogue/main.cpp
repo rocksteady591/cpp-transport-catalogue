@@ -1,9 +1,11 @@
-﻿#include "stat_reader.h"
+﻿#include "json_reader.h"
 #include "transport_catalogue.h"
 
 int main() {
+    //setlocale (LC_ALL,"Russian");
     transport::TransportCatalogue tc;
-    StatReader sr;
-    sr.ParseAndPrintStat(std::cin, std::cout, tc);
+    JsonReader json;
+    json.input_json_reader(tc);
+    
     return 0;
 }

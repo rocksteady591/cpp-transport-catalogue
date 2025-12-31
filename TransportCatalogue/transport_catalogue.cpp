@@ -53,25 +53,16 @@ namespace transport {
         return &it->second;
     }
 
+    // В методе CalculateRoadLength убедитесь, что вы считаете так:
     double TransportCatalogue::CalculateRoadLength(const Bus* bus) const {
-        if (!bus || bus->route.empty()) return 0.0;
-        double distance = 0.0;
-
+        double distance = 0;
         for (size_t i = 0; i + 1 < bus->route.size(); ++i) {
-            auto stop1 = GetStop(bus->route[i]);
-            auto stop2 = GetStop(bus->route[i + 1]);
-            if (stop1 && stop2) {
-                distance += GetRoadDistance(stop1->name, stop2->name);
-            }
+            distance += GetRoadDistance(bus->route[i], bus->route[i + 1]);
         }
-
-        if (!bus->is_ring && bus->route.size() > 1) {
+        if (!bus->is_ring) {
+            // Для некольцевого маршрута считаем обратно
             for (size_t i = bus->route.size() - 1; i > 0; --i) {
-                auto stop1 = GetStop(bus->route[i]);
-                auto stop2 = GetStop(bus->route[i - 1]);
-                if (stop1 && stop2) {
-                    distance += GetRoadDistance(stop1->name, stop2->name);
-                }
+                distance += GetRoadDistance(bus->route[i], bus->route[i - 1]);
             }
         }
         return distance;
@@ -85,7 +76,7 @@ namespace transport {
             auto stop1 = GetStop(bus->route[i]);
             auto stop2 = GetStop(bus->route[i + 1]);
             if (stop1 && stop2) {
-                distance += ComputeDistance(
+                distance += geo::ComputeDistance(
                     { stop1->coordinate.latitude, stop1->coordinate.longitude },
                     { stop2->coordinate.latitude, stop2->coordinate.longitude }
                 );
@@ -97,7 +88,7 @@ namespace transport {
                 auto stop1 = GetStop(bus->route[i]);
                 auto stop2 = GetStop(bus->route[i - 1]);
                 if (stop1 && stop2) {
-                    distance += ComputeDistance(
+                    distance += geo::ComputeDistance(
                         { stop1->coordinate.latitude, stop1->coordinate.longitude },
                         { stop2->coordinate.latitude, stop2->coordinate.longitude }
                     );

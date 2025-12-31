@@ -36,8 +36,8 @@ namespace transport {
         struct BusStats {
             size_t stops_on_route;
             size_t unique_stops;
-            double route_length;
-            double curvature; 
+            double route_length; // Для расчетов
+            double curvature;
         };
 
         void AddStop(const std::string& name, const Coordinate& coordinate);
