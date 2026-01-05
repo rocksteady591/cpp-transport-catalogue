@@ -47,6 +47,8 @@ namespace transport {
         int GetRoadDistance(const std::string_view from_stop, const std::string_view to_stop) const;
 
         const Stop* GetStop(std::string_view name) const;
+        const std::unordered_map<std::string, Stop>* GetStops()const;
+        const std::unordered_map<std::string, Bus>* GetBuses()const;
         const Bus* GetBus(std::string_view number) const;
         std::optional<BusStats> GetBusStatistics(const std::string_view number) const;
 

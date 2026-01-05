@@ -13,13 +13,6 @@ namespace svg {
     struct Rgba;
     using namespace std::literals;
 
-
-    // Объявив в заголовочном файле константу со спецификатором inline,
-    // мы сделаем так, что она будет одной на все единицы трансляции,
-    // которые подключают этот заголовок.
-    // В противном случае каждая единица трансляции будет использовать свою копию этой константы
-
-
     struct Rgb {
     public:
         Rgb() = default;
@@ -36,7 +29,7 @@ namespace svg {
     };
 
     struct ColorSender {
-        std::ostream& out; // Храним ссылку на поток
+        std::ostream& out;
 
         void operator()(std::monostate) const {
             out << "none"sv;
@@ -54,7 +47,7 @@ namespace svg {
 
     using Color = std::variant<std::monostate, std::string, Rgb, Rgba>;
 
-    // 3. И только теперь создаем константу
+
     inline const Color NoneColor = "none";
 
     struct Point {

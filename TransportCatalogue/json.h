@@ -21,7 +21,6 @@ namespace json {
 
     class Node {
     public:
-        // ����� ������������� ��� ���������� maybe-uninitialized
         Node() : value_(nullptr) {}
 
         explicit Node(NodeValue value) : value_(std::move(value)) {}
@@ -50,12 +49,10 @@ namespace json {
         bool IsArray() const;
         bool IsMap() const;
 
-        // ������� �� ������ � ���������� ����� ��� ����������� ������ ����������
         const NodeValue& GetValue() const {
             return value_;
         }
 
-        // ��������� ��������� ��� C++17
         bool operator==(const Node& other) const {
             return value_ == other.value_;
         }
@@ -99,7 +96,7 @@ namespace json {
                 bool first = true;
                 for (const auto& [key, value] : dict) {
                     if (!first) out << ", ";
-                    (*this)(key); // �������� ���� ��� ������
+                    (*this)(key);
                     out << ": ";
                     std::visit(*this, value.GetValue());
                     first = false;
@@ -117,7 +114,6 @@ namespace json {
         explicit Document(Node root);
         const Node& GetRoot() const;
 
-        // �������� ��� ������:
         bool operator==(const Document& other) const {
             return root_ == other.root_;
         }

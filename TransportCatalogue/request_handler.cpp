@@ -1,11 +1,13 @@
 #include "request_handler.h"
+#include "map_renderer.h"
+#include "svg.h"
 #include <algorithm>
 #include <string>
 
 using namespace std;
 
-// ===== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДОСТУПА К Dict =====
-static const json::Node* FindValue(const json::Dict& dict, const string& key) {
+
+static const json::Node* FindValue(const json::Dict& dict, const std::string_view key) {
     for (const auto& [k, v] : dict) {
         if (k == key) {
             return &v;
@@ -14,7 +16,7 @@ static const json::Node* FindValue(const json::Dict& dict, const string& key) {
     return nullptr;
 }
 
-// =================== SERIALIZATION ===================
+// сериализация
 void RequestHandler::Serialization(transport::TransportCatalogue& tc,
     const json::Node& root) {
     const auto& root_map = root.AsMap();
@@ -23,7 +25,7 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
 
     const auto& requests = base->AsArray();
 
-    // 1️⃣ Добавляем остановки
+    // Добавляем остановки
     for (const auto& req : requests) {
         const auto& m = req.AsMap();
         if (FindValue(m, "type")->AsString() == "Stop") {
@@ -37,7 +39,7 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
         }
     }
 
-    // 2️⃣ Добавляем расстояния
+    // Добавляем расстояния
     for (const auto& req : requests) {
         const auto& m = req.AsMap();
         if (FindValue(m, "type")->AsString() == "Stop") {
@@ -51,7 +53,7 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
         }
     }
 
-    // 3️⃣ Добавляем автобусы
+    // Добавляем автобусы
     for (const auto& req : requests) {
         const auto& m = req.AsMap();
         if (FindValue(m, "type")->AsString() == "Bus") {
@@ -67,9 +69,39 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
             );
         }
     }
+
+    //данные для рендера маршрутов
+    const json::Dict render_settings = FindValue(root_map, "render_settings"sv)->AsMap();
+    const size_t width = FindValue(render_settings, "width"sv)->AsInt();
+    const size_t height = FindValue(render_settings, "height"sv)->AsInt();
+    const size_t padding = FindValue(render_settings, "padding"sv)->AsInt();
+    const size_t stop_radius = FindValue(render_settings, "stop_radius"sv)->AsInt();
+    const size_t line_width = FindValue(render_settings, "line_width"sv)->AsInt();
+    const size_t bus_label_font_size = FindValue(render_settings, "bus_label_font_size"sv)->AsInt();
+    const LabelOffset bus_label_offset{
+        FindValue(render_settings, "bus_label_offset"sv)->AsArray()[0].AsDouble(),
+        FindValue(render_settings, "bus_label_offset"sv)->AsArray()[1].AsDouble()
+    };
+    const size_t stop_label_font_size = FindValue(render_settings, "stop_label_font_size"sv)->AsInt();
+    const LabelOffset stop_label_offset{
+        FindValue(render_settings, "stop_label_offset"sv)->AsArray()[0].AsDouble(),
+        FindValue(render_settings, "stop_label_offset"sv)->AsArray()[1].AsDouble()
+    };
+    const svg::Rgba underlayer_color{
+        FindValue(render_settings, "underlayer_color"sv)->AsArray()[0].AsInt(),
+        FindValue(render_settings, "underlayer_color"sv)->AsArray()[1].AsInt(),
+        FindValue(render_settings, "underlayer_color"sv)->AsArray()[2].AsInt(),
+        FindValue(render_settings, "underlayer_color"sv)->AsArray()[3].AsDouble()
+    };
+    const size_t underlayer_width = FindValue(render_settings, "underlayer_width"sv)->AsInt();
+    const json::Array color_palette = FindValue(render_settings, "color_palette"sv)->AsArray();
+
+    MapRenderer mr(width, height, padding, stop_radius, line_width, bus_label_font_size, bus_label_offset,
+        stop_label_font_size, stop_label_offset, underlayer_color, underlayer_width, color_palette);
+    mr.Render(tc);
 }
 
-// ================= DESERIALIZATION ===================
+// десериализация
 json::Node RequestHandler::DeSerialization(const transport::TransportCatalogue& tc, const json::Node& root) {
     json::Array response;
     const auto& root_map = root.AsMap();
@@ -88,7 +120,7 @@ json::Node RequestHandler::DeSerialization(const transport::TransportCatalogue& 
             const string& name = FindValue(m, "name")->AsString();
             const auto* bus = tc.GetBus(name);
 
-            res_dict.push_back({ "request_id"s, json::Node(id) }); // Явное создание пары
+            res_dict.push_back({ "request_id"s, json::Node(id) });
             if (!bus) {
                 res_dict.push_back({ "error_message"s, json::Node("not found"s) });
             }
@@ -110,7 +142,6 @@ json::Node RequestHandler::DeSerialization(const transport::TransportCatalogue& 
             }
             else {
                 json::Array buses_node;
-                // info — это set<string_view>, он уже отсортирован
                 for (const auto& b : *info) {
                     buses_node.push_back(json::Node(string(b)));
                 }

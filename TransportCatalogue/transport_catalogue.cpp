@@ -47,20 +47,28 @@ namespace transport {
         return &it->second;
     }
 
+    const std::unordered_map<std::string, Stop>* TransportCatalogue::GetStops() const
+    {
+        return &stops_;
+    }
+
+    const std::unordered_map<std::string, Bus>* TransportCatalogue::GetBuses() const
+    {
+        return &buses_;
+    }
+
     const Bus* TransportCatalogue::GetBus(const std::string_view number) const {
         auto it = buses_.find(number.data());
         if (it == buses_.end()) return nullptr;
         return &it->second;
     }
 
-    // В методе CalculateRoadLength убедитесь, что вы считаете так:
     double TransportCatalogue::CalculateRoadLength(const Bus* bus) const {
         double distance = 0;
         for (size_t i = 0; i + 1 < bus->route.size(); ++i) {
             distance += GetRoadDistance(bus->route[i], bus->route[i + 1]);
         }
         if (!bus->is_ring) {
-            // Для некольцевого маршрута считаем обратно
             for (size_t i = bus->route.size() - 1; i > 0; --i) {
                 distance += GetRoadDistance(bus->route[i], bus->route[i - 1]);
             }

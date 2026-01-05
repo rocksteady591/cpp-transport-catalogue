@@ -75,8 +75,6 @@ namespace json {
                     throw ParsingError("Expected ':'");
                 }
 
-                // FIX: вместо emplace используем emplace_back
-                // WHY: Dict теперь vector<pair<string, Node>>
                 result.emplace_back(
                     std::move(key),
                     LoadNode(input)

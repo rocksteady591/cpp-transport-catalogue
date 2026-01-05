@@ -36,6 +36,9 @@
     <ClCompile Include="svg.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="map_renderer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="transport_catalogue.h">
@@ -56,8 +59,12 @@
     <ClInclude Include="svg.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="map_renderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="input.json" />
+    <None Include="out.svg" />
   </ItemGroup>
 </Project>
