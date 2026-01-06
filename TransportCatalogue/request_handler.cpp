@@ -72,11 +72,11 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
 
     //данные для рендера маршрутов
     const json::Dict render_settings = FindValue(root_map, "render_settings"sv)->AsMap();
-    const size_t width = FindValue(render_settings, "width"sv)->AsInt();
-    const size_t height = FindValue(render_settings, "height"sv)->AsInt();
-    const size_t padding = FindValue(render_settings, "padding"sv)->AsInt();
-    const size_t stop_radius = FindValue(render_settings, "stop_radius"sv)->AsInt();
-    const size_t line_width = FindValue(render_settings, "line_width"sv)->AsInt();
+    const double width = FindValue(render_settings, "width"sv)->AsDouble();
+    const double height = FindValue(render_settings, "height"sv)->AsDouble();
+    const double padding = FindValue(render_settings, "padding"sv)->AsDouble();
+    const double stop_radius = FindValue(render_settings, "stop_radius"sv)->AsDouble();
+    const double line_width = FindValue(render_settings, "line_width"sv)->AsDouble();
     const size_t bus_label_font_size = FindValue(render_settings, "bus_label_font_size"sv)->AsInt();
     const LabelOffset bus_label_offset{
         FindValue(render_settings, "bus_label_offset"sv)->AsArray()[0].AsDouble(),
@@ -87,13 +87,29 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
         FindValue(render_settings, "stop_label_offset"sv)->AsArray()[0].AsDouble(),
         FindValue(render_settings, "stop_label_offset"sv)->AsArray()[1].AsDouble()
     };
-    const svg::Rgba underlayer_color{
-        FindValue(render_settings, "underlayer_color"sv)->AsArray()[0].AsInt(),
-        FindValue(render_settings, "underlayer_color"sv)->AsArray()[1].AsInt(),
-        FindValue(render_settings, "underlayer_color"sv)->AsArray()[2].AsInt(),
-        FindValue(render_settings, "underlayer_color"sv)->AsArray()[3].AsDouble()
-    };
-    const size_t underlayer_width = FindValue(render_settings, "underlayer_width"sv)->AsInt();
+    svg::Color underlayer_color;
+    if (FindValue(render_settings, "underlayer_color"sv)->IsArray()) {
+        if (FindValue(render_settings, "underlayer_color"sv)->AsArray().size() == 3) {
+            underlayer_color = svg::Rgb{
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[0].AsInt(),
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[1].AsInt(),
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[2].AsInt()
+            };
+        }
+        else if (FindValue(render_settings, "underlayer_color"sv)->AsArray().size() == 4) {
+            underlayer_color = svg::Rgba{
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[0].AsInt(),
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[1].AsInt(),
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[2].AsInt(),
+                FindValue(render_settings, "underlayer_color"sv)->AsArray()[3].AsDouble()
+            };
+        }
+    }
+    else if (FindValue(render_settings, "underlayer_color"sv)->IsString()) {
+        underlayer_color = FindValue(render_settings, "underlayer_color"sv)->AsString();
+    }
+    
+    const double underlayer_width = FindValue(render_settings, "underlayer_width"sv)->AsDouble();
     const json::Array color_palette = FindValue(render_settings, "color_palette"sv)->AsArray();
 
     MapRenderer mr(width, height, padding, stop_radius, line_width, bus_label_font_size, bus_label_offset,

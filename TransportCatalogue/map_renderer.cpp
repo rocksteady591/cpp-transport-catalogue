@@ -1,10 +1,10 @@
 #include "map_renderer.h"
 #include <fstream>
 
-MapRenderer::MapRenderer(const size_t width, const size_t height, const size_t padding, const size_t stop_radius,
-	const size_t line_width, const size_t bus_label_font_size, const LabelOffset bus_label_offset, const size_t stop_label_font_size,
-	const LabelOffset stop_label_offset, const svg::Rgba underlayer_color,
-	const size_t underlayer_width, const json::Array color_palette)
+MapRenderer::MapRenderer(const double width, const double height, const double padding, const double stop_radius,
+	const double line_width, const size_t bus_label_font_size, const LabelOffset bus_label_offset, const size_t stop_label_font_size,
+	const LabelOffset stop_label_offset, const svg::Color underlayer_color,
+	const double underlayer_width, const json::Array color_palette)
 	: width_(width), height_(height), padding_(padding),
 	stop_radius_(stop_radius), line_width_(line_width),
 	bus_label_font_size_(bus_label_font_size), bus_label_offset_(bus_label_offset),
@@ -14,8 +14,13 @@ MapRenderer::MapRenderer(const size_t width, const size_t height, const size_t p
 
 void MapRenderer::Render(const transport::TransportCatalogue& tc){
 	std::vector<geo::Coordinates> all_coordinates;
-	for (const auto& [key, value] : *tc.GetStops()) {
-		all_coordinates.emplace_back(value.coordinate.latitude, value.coordinate.longitude);
+	all_coordinates.reserve(tc.GetStops()->size());
+	for (const auto& [bus_name, bus] : *tc.GetBuses()) {
+		if (bus.route.empty()) continue;
+		for (const auto& stop_name : bus.route) {
+			auto stop_ptr = tc.GetStop(stop_name);
+			all_coordinates.push_back({ stop_ptr->coordinate.latitude, stop_ptr->coordinate.longitude });
+		}
 	}
 	SphereProjector projector(all_coordinates.begin(), all_coordinates.end(), width_, height_, padding_);
 	svg::Document doc;
@@ -27,7 +32,7 @@ void MapRenderer::Render(const transport::TransportCatalogue& tc){
 	}
 	size_t color_index = 0;
 	for (const auto& [key, value] : not_void_routes) {
-		if (color_index == not_void_routes.size()) {
+		if (color_index == color_palette_.size()) {
 			color_index = 0;
 		}
 		svg::Polyline polyline;

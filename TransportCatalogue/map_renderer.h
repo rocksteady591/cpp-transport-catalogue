@@ -95,22 +95,22 @@ private:
 
 class MapRenderer {
 public:
-	MapRenderer(const size_t width, const size_t height, const size_t padding, const size_t stop_radius,
-		const size_t line_width, const size_t bus_label_font_size, const LabelOffset bus_label_offset,
-		const size_t stop_label_font_size, const LabelOffset stop_label_offset, const svg::Rgba underlayer_color,
-		const size_t underlayer_width, const json::Array color_palette);
+	MapRenderer(const double width, const double height, const double padding, const double stop_radius,
+		const double line_width, const size_t bus_label_font_size, const LabelOffset bus_label_offset,
+		const size_t stop_label_font_size, const LabelOffset stop_label_offset, const svg::Color underlayer_color,
+		const double underlayer_width, const json::Array color_palette);
 	void Render(const transport::TransportCatalogue& tc);
 private:
-	size_t width_;
-	size_t height_;
-	size_t padding_;
-	size_t stop_radius_;
-	size_t line_width_;
+    double width_;
+    double height_;
+    double padding_;
+    double stop_radius_;
+    double line_width_;
 	size_t bus_label_font_size_;
 	LabelOffset bus_label_offset_;
 	size_t stop_label_font_size_;
 	LabelOffset stop_label_offset_;
-	svg::Rgba underlayer_color_;
-	size_t underlayer_width_;
+	svg::Color underlayer_color_;
+    double underlayer_width_;
 	json::Array color_palette_;
 };
