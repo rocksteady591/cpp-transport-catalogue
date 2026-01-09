@@ -99,6 +99,7 @@ public:
 		const size_t stop_label_font_size, const LabelOffset stop_label_offset, const svg::Color underlayer_color,
 		const double underlayer_width, const json::Array color_palette);
 	void Render(const transport::TransportCatalogue& tc);
+    svg::Color GetColorFromPalette(size_t index) const;
 private:
     double width_;
     double height_;
