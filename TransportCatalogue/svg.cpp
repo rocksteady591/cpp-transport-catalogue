@@ -30,7 +30,7 @@ namespace svg {
     void Circle::RenderObject(const RenderContext& context) const {
         auto& out = context.out;
         out << "<circle cx=\""sv << center_.x << "\" cy=\""sv << center_.y << "\" "sv;
-        out << "r=\""sv << radius_ << "\" "sv;
+        out << "r=\""sv << radius_ << "\""sv;
         if (fill_color_.has_value()) {
             out << " fill=\""sv;
             std::visit(ColorSender{ out }, fill_color_.value());
@@ -60,40 +60,36 @@ namespace svg {
 
     void Polyline::RenderObject(const RenderContext& context) const {
         auto& out = context.out;
-
         out << "<polyline points=\"";
         for (size_t i = 0; i < line_.size(); ++i) {
-            out << line_[i].x << ',' << line_[i].y;
+            out << line_[i].x << "," << line_[i].y;
             if (i + 1 < line_.size()) {
-                out << ' ';
+                out << " ";
             }
         }
-        // ОШИБКА БЫЛА ТУТ: Закрываем кавычку сразу после списка точек
         out << "\"";
-
-        if (fill_color_.has_value()) {
-            out << " fill=\""sv;
-            std::visit(ColorSender{ out }, fill_color_.value());
-            out << "\""sv; // убрал лишний пробел в конце, он добавится перед следующим атрибутом
+        if (fill_color_) {
+            out << " fill=\"";
+            std::visit(ColorSender{ out }, *fill_color_);
+            out << "\"";
         }
-        if (stroke_color_.has_value()) {
-            out << " stroke=\""sv;
-            std::visit(ColorSender{ out }, stroke_color_.value());
-            out << "\""sv;
+        if (stroke_color_) {
+            out << " stroke=\"";
+            std::visit(ColorSender{ out }, *stroke_color_);
+            out << "\"";
         }
-        if (stroke_width_ != std::nullopt) {
-            out << " stroke-width=\""sv << stroke_width_.value() << "\""sv;
+        if (stroke_width_) {
+            out << " stroke-width=\"" << *stroke_width_ << "\"";
         }
-        if (line_cap_ != std::nullopt) {
-            out << " stroke-linecap=\""sv << line_cap_.value() << "\""sv;
+        if (line_cap_) {
+            out << " stroke-linecap=\"" << *line_cap_ << "\"";
         }
-        if (line_join_ != std::nullopt) {
-            out << " stroke-linejoin=\""sv << line_join_.value() << "\""sv;
+        if (line_join_) {
+            out << " stroke-linejoin=\"" << *line_join_ << "\"";
         }
-
-        // И в конце просто закрываем тег
-        out << " />"sv;
+        out << "/>";
     }
+
     //----------- Text ---------------------
     Text& Text::SetPosition(Point pos) {
         position_ = pos;
@@ -127,38 +123,40 @@ namespace svg {
 
     void Text::RenderObject(const RenderContext& context) const {
         auto& out = context.out;
-        out << "<text x=\"" << position_.x << "\" "
-            << "y=\"" << position_.y << "\" "
-            << "dx=\"" << offset_.x << "\" "
-            << "dy=\"" << offset_.y << "\" "
-            << "font-size=\"" << font_size_ << "\"";
+        out << "<text";
+        if (fill_color_) {
+            out << " fill=\"";
+            std::visit(ColorSender{out}, *fill_color_);
+            out << "\"";
+        }
+        if (stroke_color_) {
+            out << " stroke=\"";
+            std::visit(ColorSender{out}, *stroke_color_);
+            out << "\"";
+        }
+        if (stroke_width_) {
+            out << " stroke-width=\"" << *stroke_width_ << "\"";
+        }
+        if (line_cap_) {
+            out << " stroke-linecap=\"" << *line_cap_ << "\"";
+        }
+        if (line_join_) {
+            out << " stroke-linejoin=\"" << *line_join_ << "\"";
+        }
+        out << " x=\"" << position_.x << "\""
+            << " y=\"" << position_.y << "\""
+            << " dx=\"" << offset_.x << "\""
+            << " dy=\"" << offset_.y << "\""
+            << " font-size=\"" << font_size_ << "\"";
         if (!font_family_.empty()) {
-            out << " font-family=\"" << font_family_ << "\" ";
+            out << " font-family=\"" << font_family_ << "\"";
         }
         if (!font_weight_.empty()) {
-            out << " font-weight=\"" << font_weight_ << "\" ";
-        }
-        if (fill_color_.has_value()) {
-            out << " fill=\""sv;
-            std::visit(ColorSender{ out }, fill_color_.value());
-            out << "\""sv; // убрал лишний пробел в конце, он добавится перед следующим атрибутом
-        }
-        if (stroke_color_.has_value()) {
-            out << " stroke=\""sv;
-            std::visit(ColorSender{ out }, stroke_color_.value());
-            out << "\""sv;
-        }
-        if (stroke_width_ != std::nullopt) {
-            out << "stroke-width=\""sv << stroke_width_.value() << "\" "sv;
-        }
-        if (line_cap_ != std::nullopt) {
-            out << "stroke-linecap=\""sv << line_cap_.value() << "\" "sv;
-        }
-        if (line_join_ != std::nullopt) {
-            out << "stroke-linejoin=\""sv << line_join_.value() << "\" "sv;
+            out << " font-weight=\"" << font_weight_ << "\"";
         }
         out << ">" << data_ << "</text>";
     }
+
 
     //----------- Document -----------------
     // Добавляет в svg-документ объект-наследник svg::Object

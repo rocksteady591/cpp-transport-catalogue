@@ -88,7 +88,6 @@ private:
 struct LabelOffset {
 public:
 	LabelOffset(double x, double y) : x_(x), y_(y){}
-private:
 	double x_;
 	double y_;
 };
