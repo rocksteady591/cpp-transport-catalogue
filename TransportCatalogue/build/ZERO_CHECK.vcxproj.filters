@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\pracis\transport_catalogue\TransportCatalogue\build\CMakeFiles\b143905dfb9cf9924e186ed1b68dc887\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4D34281B-1242-3D1C-A60C-E236D84AF21C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

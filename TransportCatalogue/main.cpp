@@ -5,7 +5,6 @@
 
 int main() {
     //std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-    //setlocale (LC_ALL,"Russian");
     transport::TransportCatalogue tc;
     JsonReader json;
     json.input_json_reader(tc);

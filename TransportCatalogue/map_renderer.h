@@ -97,8 +97,8 @@ public:
 	MapRenderer(const double width, const double height, const double padding, const double stop_radius,
 		const double line_width, const size_t bus_label_font_size, const LabelOffset bus_label_offset,
 		const size_t stop_label_font_size, const LabelOffset stop_label_offset, const svg::Color underlayer_color,
-		const double underlayer_width, const json::Array color_palette);
-	void Render(const transport::TransportCatalogue& tc);
+		const double underlayer_width, const json::Array color_palette, const transport::TransportCatalogue& tc);
+	std::ostringstream Render();
     svg::Color GetColorFromPalette(size_t index) const;
 private:
     double width_;
@@ -113,4 +113,5 @@ private:
 	svg::Color underlayer_color_;
     double underlayer_width_;
 	json::Array color_palette_;
+    const transport::TransportCatalogue& tc_;
 };

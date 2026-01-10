@@ -138,7 +138,6 @@ namespace json {
                         return Node(std::stoi(s));
                     }
                     catch (...) {
-                        // Если число слишком большое для int, читаем как double
                         return Node(std::stod(s));
                     }
                 }

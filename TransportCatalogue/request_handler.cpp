@@ -3,6 +3,7 @@
 #include "svg.h"
 #include <algorithm>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
 
     const auto& requests = base->AsArray();
 
-    // Добавляем остановки
+    // добавляю остановки
     for (const auto& req : requests) {
         const auto& m = req.AsMap();
         if (FindValue(m, "type")->AsString() == "Stop") {
@@ -39,7 +40,7 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
         }
     }
 
-    // Добавляем расстояния
+    // добавляю расстояния
     for (const auto& req : requests) {
         const auto& m = req.AsMap();
         if (FindValue(m, "type")->AsString() == "Stop") {
@@ -53,7 +54,7 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
         }
     }
 
-    // Добавляем автобусы
+    // добавляю автобусы
     for (const auto& req : requests) {
         const auto& m = req.AsMap();
         if (FindValue(m, "type")->AsString() == "Bus") {
@@ -69,8 +70,11 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
             );
         }
     }
+}
 
-    //данные для рендера маршрутов
+std::ostringstream RequestHandler::GetPicture(const transport::TransportCatalogue& tc, const json::Node& root)
+{
+    const auto& root_map = root.AsMap();
     const json::Dict render_settings = FindValue(root_map, "render_settings"sv)->AsMap();
     const double width = FindValue(render_settings, "width"sv)->AsDouble();
     const double height = FindValue(render_settings, "height"sv)->AsDouble();
@@ -111,10 +115,12 @@ void RequestHandler::Serialization(transport::TransportCatalogue& tc,
     
     const double underlayer_width = FindValue(render_settings, "underlayer_width"sv)->AsDouble();
     const json::Array color_palette = FindValue(render_settings, "color_palette"sv)->AsArray();
-
+    
     MapRenderer mr(width, height, padding, stop_radius, line_width, bus_label_font_size, bus_label_offset,
-        stop_label_font_size, stop_label_offset, underlayer_color, underlayer_width, color_palette);
-    mr.Render(tc);
+        stop_label_font_size, stop_label_offset, underlayer_color, underlayer_width, color_palette, tc);
+
+    std::ostringstream res = mr.Render();
+    return res;
 }
 
 // десериализация
@@ -163,6 +169,12 @@ json::Node RequestHandler::DeSerialization(const transport::TransportCatalogue& 
                 }
                 res_dict.push_back({ "buses"s, json::Node(move(buses_node)) });
             }
+        }
+        else if(type == "Map"){
+            std::ostringstream picture = GetPicture(tc, root);
+            std::string picture_in_string = picture.str();
+            res_dict.push_back({"map", picture_in_string});
+            res_dict.push_back({"request_id", json::Node(id)});
         }
         response.push_back(json::Node(move(res_dict)));
     }

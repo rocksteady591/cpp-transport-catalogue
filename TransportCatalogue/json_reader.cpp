@@ -10,6 +10,6 @@ void JsonReader::input_json_reader(transport::TransportCatalogue& tc) {
     RequestHandler handler;
     handler.Serialization(tc, root);
 
-    //json::Node result = handler.DeSerialization(tc, root);
-    //json::Print(json::Document(result), std::cout);
+    json::Node result = handler.DeSerialization(tc, root);
+    json::Print(json::Document(result), std::cout);
 }
