@@ -1,7 +1,6 @@
 #include "transport_catalogue.h"
 #include <unordered_set>
-#include <algorithm>
-#include <cmath>
+#include "geo.h"
 
 namespace transport {
 

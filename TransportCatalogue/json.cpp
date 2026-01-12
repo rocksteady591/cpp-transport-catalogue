@@ -14,7 +14,7 @@ namespace json {
             Array result;
             char c;
             if (!(input >> c)) throw ParsingError("Unexpected end of array");
-            if (c == ']') return Node(move(result));
+            if (c == ']') return Node(std::move(result));
             input.putback(c);
             while (true) {
                 result.push_back(LoadNode(input));
@@ -22,7 +22,7 @@ namespace json {
                 if (c == ']') break;
                 if (c != ',') throw ParsingError("Expected ',' or ']'");
             }
-            return Node(move(result));
+            return Node(std::move(result));
         }
 
         Node LoadString(istream& input) {
@@ -30,7 +30,7 @@ namespace json {
             char c;
             while (input.get(c)) {
                 if (c == '"') {
-                    return Node(move(line));
+                    return Node(std::move(line));
                 }
                 else if (c == '\\') {
                     input.get(c);

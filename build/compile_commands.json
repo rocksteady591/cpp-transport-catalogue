@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/main.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/main.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/main.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/main.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/geo.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/geo.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/geo.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/geo.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/json.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/json.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/json_reader.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json_reader.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json_reader.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/json_reader.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/request_handler.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/request_handler.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/svg.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/svg.cpp.o"
+},
+{
+  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
+  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp",
+  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp",
+  "output": "CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o"
+}
+]
