@@ -5,6 +5,7 @@
 namespace transport {
 
     void TransportCatalogue::SetRoadDistance(const std::string_view from_stop, const std::string_view to_stop, double distance) {
+        //добавляя тут проверку все тесты ломаются
         road_distances_[{from_stop.data(), to_stop.data()}] = distance;
     }
 

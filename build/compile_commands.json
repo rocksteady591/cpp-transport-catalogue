@@ -31,12 +31,6 @@
 },
 {
   "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/request_handler.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/request_handler.cpp.o"
-},
-{
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
   "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/svg.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
   "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
   "output": "CMakeFiles/transport_catalogue.dir/svg.cpp.o"

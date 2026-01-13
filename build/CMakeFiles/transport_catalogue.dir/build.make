@@ -142,24 +142,10 @@ CMakeFiles/transport_catalogue.dir/map_renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/transport_catalogue.dir/map_renderer.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp -o CMakeFiles/transport_catalogue.dir/map_renderer.cpp.s
 
-CMakeFiles/transport_catalogue.dir/request_handler.cpp.o: CMakeFiles/transport_catalogue.dir/flags.make
-CMakeFiles/transport_catalogue.dir/request_handler.cpp.o: /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp
-CMakeFiles/transport_catalogue.dir/request_handler.cpp.o: CMakeFiles/transport_catalogue.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/transport_catalogue.dir/request_handler.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/transport_catalogue.dir/request_handler.cpp.o -MF CMakeFiles/transport_catalogue.dir/request_handler.cpp.o.d -o CMakeFiles/transport_catalogue.dir/request_handler.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp
-
-CMakeFiles/transport_catalogue.dir/request_handler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/transport_catalogue.dir/request_handler.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp > CMakeFiles/transport_catalogue.dir/request_handler.cpp.i
-
-CMakeFiles/transport_catalogue.dir/request_handler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/transport_catalogue.dir/request_handler.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.cpp -o CMakeFiles/transport_catalogue.dir/request_handler.cpp.s
-
 CMakeFiles/transport_catalogue.dir/svg.cpp.o: CMakeFiles/transport_catalogue.dir/flags.make
 CMakeFiles/transport_catalogue.dir/svg.cpp.o: /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp
 CMakeFiles/transport_catalogue.dir/svg.cpp.o: CMakeFiles/transport_catalogue.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/transport_catalogue.dir/svg.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/transport_catalogue.dir/svg.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/transport_catalogue.dir/svg.cpp.o -MF CMakeFiles/transport_catalogue.dir/svg.cpp.o.d -o CMakeFiles/transport_catalogue.dir/svg.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp
 
 CMakeFiles/transport_catalogue.dir/svg.cpp.i: cmake_force
@@ -173,7 +159,7 @@ CMakeFiles/transport_catalogue.dir/svg.cpp.s: cmake_force
 CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o: CMakeFiles/transport_catalogue.dir/flags.make
 CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o: /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp
 CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o: CMakeFiles/transport_catalogue.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o -MF CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o.d -o CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp
 
 CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.i: cmake_force
@@ -191,7 +177,6 @@ transport_catalogue_OBJECTS = \
 "CMakeFiles/transport_catalogue.dir/json.cpp.o" \
 "CMakeFiles/transport_catalogue.dir/json_reader.cpp.o" \
 "CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o" \
-"CMakeFiles/transport_catalogue.dir/request_handler.cpp.o" \
 "CMakeFiles/transport_catalogue.dir/svg.cpp.o" \
 "CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o"
 
@@ -203,13 +188,12 @@ transport_catalogue: CMakeFiles/transport_catalogue.dir/geo.cpp.o
 transport_catalogue: CMakeFiles/transport_catalogue.dir/json.cpp.o
 transport_catalogue: CMakeFiles/transport_catalogue.dir/json_reader.cpp.o
 transport_catalogue: CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o
-transport_catalogue: CMakeFiles/transport_catalogue.dir/request_handler.cpp.o
 transport_catalogue: CMakeFiles/transport_catalogue.dir/svg.cpp.o
 transport_catalogue: CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o
 transport_catalogue: CMakeFiles/transport_catalogue.dir/build.make
 transport_catalogue: CMakeFiles/transport_catalogue.dir/compiler_depend.ts
 transport_catalogue: CMakeFiles/transport_catalogue.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable transport_catalogue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable transport_catalogue"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/transport_catalogue.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

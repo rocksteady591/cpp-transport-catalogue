@@ -7,7 +7,6 @@ transport_catalogue: \
   CMakeFiles/transport_catalogue.dir/json.cpp.o \
   CMakeFiles/transport_catalogue.dir/json_reader.cpp.o \
   CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o \
-  CMakeFiles/transport_catalogue.dir/request_handler.cpp.o \
   CMakeFiles/transport_catalogue.dir/svg.cpp.o \
   CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o \
   /usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so \
@@ -53,8 +52,6 @@ CMakeFiles/transport_catalogue.dir/json.cpp.o:
 CMakeFiles/transport_catalogue.dir/json_reader.cpp.o:
 
 CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o:
-
-CMakeFiles/transport_catalogue.dir/request_handler.cpp.o:
 
 CMakeFiles/transport_catalogue.dir/svg.cpp.o:
 

@@ -249,30 +249,6 @@ map_renderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/transport_catalogue.dir/build.make CMakeFiles/transport_catalogue.dir/map_renderer.cpp.s
 .PHONY : map_renderer.cpp.s
 
-request_handler.o: request_handler.cpp.o
-.PHONY : request_handler.o
-
-# target to build an object file
-request_handler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/transport_catalogue.dir/build.make CMakeFiles/transport_catalogue.dir/request_handler.cpp.o
-.PHONY : request_handler.cpp.o
-
-request_handler.i: request_handler.cpp.i
-.PHONY : request_handler.i
-
-# target to preprocess a source file
-request_handler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/transport_catalogue.dir/build.make CMakeFiles/transport_catalogue.dir/request_handler.cpp.i
-.PHONY : request_handler.cpp.i
-
-request_handler.s: request_handler.cpp.s
-.PHONY : request_handler.s
-
-# target to generate assembly for a file
-request_handler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/transport_catalogue.dir/build.make CMakeFiles/transport_catalogue.dir/request_handler.cpp.s
-.PHONY : request_handler.cpp.s
-
 svg.o: svg.cpp.o
 .PHONY : svg.o
 
@@ -345,9 +321,6 @@ help:
 	@echo "... map_renderer.o"
 	@echo "... map_renderer.i"
 	@echo "... map_renderer.s"
-	@echo "... request_handler.o"
-	@echo "... request_handler.i"
-	@echo "... request_handler.s"
 	@echo "... svg.o"
 	@echo "... svg.i"
 	@echo "... svg.s"

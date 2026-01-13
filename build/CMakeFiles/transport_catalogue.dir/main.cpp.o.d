@@ -1,6 +1,5 @@
 CMakeFiles/transport_catalogue.dir/main.cpp.o: \
   /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/main.cpp \
-  /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/request_handler.h \
   /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/string \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/requires_hosted.h \
@@ -172,8 +171,10 @@ CMakeFiles/transport_catalogue.dir/main.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_tree.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_set.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/stl_multiset.h \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/sstream \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/istream \
+  /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/iostream \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/ostream \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/ostream.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/ios \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/ios_base.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/ext/atomicity.h \
@@ -218,9 +219,12 @@ CMakeFiles/transport_catalogue.dir/main.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/x86_64-linux-gnu/c++/15/bits/ctype_inline.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/locale_facets.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/basic_ios.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/ostream \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/ostream.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/ostream.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/istream \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/istream.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/sstream.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/iostream
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/variant \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/monostate.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/parse_numbers.h \
+  /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json_reader.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/sstream \
+  /usr/lib/gcc/x86_64-linux-gnu/15/../../../../include/c++/15/bits/sstream.tcc

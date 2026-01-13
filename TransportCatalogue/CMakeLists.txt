@@ -11,7 +11,6 @@ add_executable(transport_catalogue
     json.cpp
     json_reader.cpp
     map_renderer.cpp
-    request_handler.cpp
     svg.cpp
     transport_catalogue.cpp
 )

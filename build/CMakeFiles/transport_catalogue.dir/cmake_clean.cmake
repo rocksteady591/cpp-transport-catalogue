@@ -10,8 +10,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/transport_catalogue.dir/main.cpp.o.d"
   "CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o"
   "CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o.d"
-  "CMakeFiles/transport_catalogue.dir/request_handler.cpp.o"
-  "CMakeFiles/transport_catalogue.dir/request_handler.cpp.o.d"
   "CMakeFiles/transport_catalogue.dir/svg.cpp.o"
   "CMakeFiles/transport_catalogue.dir/svg.cpp.o.d"
   "CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o"
