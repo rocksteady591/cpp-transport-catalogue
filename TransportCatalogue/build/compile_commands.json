@@ -1,0 +1,50 @@
+[
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\main.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\main.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/main.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\geo.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\geo.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/geo.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/geo.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\json.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\json.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/json.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/json.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\json_reader.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\json_reader.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/json_reader.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/json_reader.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\map_renderer.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\map_renderer.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/map_renderer.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\svg.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\svg.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/svg.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\transport_catalogue.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\transport_catalogue.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.obj"
+},
+{
+  "directory": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -IC:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\json_builder.cpp.obj -c C:\\Users\\rocks\\source\\repos\\cpp-transport-catalogue\\TransportCatalogue\\json_builder.cpp",
+  "file": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/json_builder.cpp",
+  "output": "C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/CMakeFiles/transport_catalogue.dir/json_builder.cpp.obj"
+}
+]

@@ -5,7 +5,7 @@
 		{
 			"compiler" : 
 			{
-				"id" : "MSVC",
+				"id" : "Clang",
 				"implicit" : 
 				{
 					"includeDirectories" : [],
@@ -13,8 +13,8 @@
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : []
 				},
-				"path" : "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostarm64/arm64/cl.exe",
-				"version" : "19.50.35721.0"
+				"path" : "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/Llvm/bin/clang.exe",
+				"version" : "20.1.8"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 
@@ -40,7 +40,7 @@
 			"compiler" : 
 			{
 				"implicit" : {},
-				"path" : "rc"
+				"path" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/rc.exe"
 			},
 			"language" : "RC",
 			"sourceFileExtensions" : 

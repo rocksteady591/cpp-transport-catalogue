@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"C:/pracis/transport_catalogue/TransportCatalogue/build/cmake_install.cmake"
+		"C:/Users/rocks/source/repos/cpp-transport-catalogue/TransportCatalogue/build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }
