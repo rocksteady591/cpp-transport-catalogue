@@ -1,5 +1,6 @@
 #pragma once
 #include "json.h"
+#include "json_builder.h"
 #include "transport_catalogue.h"
 #include <sstream>
 
@@ -15,7 +16,9 @@ private:
     void AddRoutes(const json::Array& requests, transport::TransportCatalogue& tc);
     void AddBuses(const json::Array& requests, transport::TransportCatalogue& tc);
     void AddMap(const json::Dict& root_map, transport::TransportCatalogue& tc);
-    void AddStop(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
-    void AddBus(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
+    //void AddStop(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
+    void AddStopBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
+    //void AddBus(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
+    void AddBusBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
     std::ostringstream map_out_;
 };

@@ -1,18 +1,18 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
+#include <stdexcept>
 #include <string>
 #include <variant>
 #include <vector>
-#include <stdexcept>
 
 namespace json {
 
     class Node;
     using Dict = std::vector<std::pair<std::string, Node>>;
     using Array = std::vector<Node>;
-    using NodeValue = std::variant<std::nullptr_t, Array, Dict, bool, int, double, std::string>;
+    using NodeValue =
+        std::variant<std::nullptr_t, Array, Dict, bool, int, double, std::string>;
 
     class ParsingError : public std::runtime_error {
     public:
@@ -35,6 +35,9 @@ namespace json {
 
         const Array& AsArray() const;
         const Dict& AsMap() const;
+        // non-const
+        Array& AsArray();
+        Dict& AsMap();
         int AsInt() const;
         double AsDouble() const;
         bool AsBool() const;
@@ -49,16 +52,10 @@ namespace json {
         bool IsArray() const;
         bool IsMap() const;
 
-        const NodeValue& GetValue() const {
-            return value_;
-        }
+        const NodeValue& GetValue() const { return value_; }
 
-        bool operator==(const Node& other) const {
-            return value_ == other.value_;
-        }
-        bool operator!=(const Node& other) const {
-            return !(*this == other);
-        }
+        bool operator==(const Node& other) const { return value_ == other.value_; }
+        bool operator!=(const Node& other) const { return !(*this == other); }
 
         struct NodePrinter {
             std::ostream& out;
@@ -71,12 +68,24 @@ namespace json {
                 out << '\"';
                 for (char ch : s) {
                     switch (ch) {
-                    case '\"': out << "\\\""; break;
-                    case '\\': out << "\\\\"; break;
-                    case '\t': out << "\\t"; break;
-                    case '\r': out << "\\r"; break;
-                    case '\n': out << "\\n"; break;
-                    default: out << ch; break;
+                    case '\"':
+                        out << "\\\"";
+                        break;
+                    case '\\':
+                        out << "\\\\";
+                        break;
+                    case '\t':
+                        out << "\\t";
+                        break;
+                    case '\r':
+                        out << "\\r";
+                        break;
+                    case '\n':
+                        out << "\\n";
+                        break;
+                    default:
+                        out << ch;
+                        break;
                     }
                 }
                 out << '\"';
@@ -85,7 +94,8 @@ namespace json {
                 out << '[';
                 bool first = true;
                 for (const auto& node : arr) {
-                    if (!first) out << ", ";
+                    if (!first)
+                        out << ", ";
                     std::visit(*this, node.GetValue());
                     first = false;
                 }
@@ -95,7 +105,8 @@ namespace json {
                 out << '{';
                 bool first = true;
                 for (const auto& [key, value] : dict) {
-                    if (!first) out << ", ";
+                    if (!first)
+                        out << ", ";
                     (*this)(key);
                     out << ": ";
                     std::visit(*this, value.GetValue());
@@ -114,12 +125,8 @@ namespace json {
         explicit Document(Node root);
         const Node& GetRoot() const;
 
-        bool operator==(const Document& other) const {
-            return root_ == other.root_;
-        }
-        bool operator!=(const Document& other) const {
-            return !(*this == other);
-        }
+        bool operator==(const Document& other) const { return root_ == other.root_; }
+        bool operator!=(const Document& other) const { return !(*this == other); }
 
     private:
         Node root_;
@@ -128,4 +135,4 @@ namespace json {
     Document Load(std::istream& input);
     void Print(const Document& doc, std::ostream& output);
 
-} //namespace json
+} // namespace json

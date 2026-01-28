@@ -1,4 +1,6 @@
 #include "json_reader.h"
+#include "json.h"
+#include "json_builder.h"
 #include "map_renderer.h"
 
 
@@ -108,7 +110,7 @@ static const json::Node* FindValue(const json::Dict& dict, const std::string_vie
         
         map_out_ = mr.Render();
     }
-    void JsonReader::AddStop(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id){
+    /*void JsonReader::AddStop(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id){
         using namespace std::literals;
         const std::string& name = FindValue(this_map, "name")->AsString();
             const auto* info = tc.GetStopInformation(name);
@@ -124,24 +126,8 @@ static const json::Node* FindValue(const json::Dict& dict, const std::string_vie
                 }
                 res_dict.push_back({ "buses"s, json::Node(std::move(buses_node)) });
             }
-    }
-    void JsonReader::AddBus(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id){
-        using namespace std::literals;
-        const std::string& name = FindValue(this_map, "name")->AsString();
-            const auto* bus = tc.GetBus(name);
-
-            res_dict.push_back({ "request_id"s, json::Node(id) });
-            if (!bus) {
-                res_dict.push_back({ "error_message"s, json::Node("not found"s) });
-            }
-            else {
-                auto stat = tc.GetBusInfo(bus);
-                res_dict.push_back({ "curvature"s, json::Node(stat.curvature) });
-                res_dict.push_back({ "route_length"s, json::Node(static_cast<double>(stat.route_length)) });
-                res_dict.push_back({ "stop_count"s, json::Node(static_cast<int>(stat.stops_on_route)) });
-                res_dict.push_back({ "unique_stop_count"s, json::Node(static_cast<int>(stat.unique_stops)) });
-            }
-    }
+    }*/
+    
 
 // сериализация
 void JsonReader::ReadAndExecuteBaseRequests(transport::TransportCatalogue& tc, const json::Node& root) {
@@ -174,35 +160,106 @@ const std::ostringstream& JsonReader::GetMap()
     return map_out_;    
 }
 
+/*void JsonReader::AddBus(json::Dict& res_dict, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id){
+        using namespace std::literals;
+        const std::string& name = FindValue(this_map, "name")->AsString();
+            const auto* bus = tc.GetBus(name);
+
+            res_dict.push_back({ "request_id"s, json::Node(id) });
+            if (!bus) {
+                res_dict.push_back({ "error_message"s, json::Node("not found"s) });
+            }
+            else {
+                auto stat = tc.GetBusInfo(bus);
+                res_dict.push_back({ "curvature"s, json::Node(stat.curvature) });
+                res_dict.push_back({ "route_length"s, json::Node(static_cast<double>(stat.route_length)) });
+                res_dict.push_back({ "stop_count"s, json::Node(static_cast<int>(stat.stops_on_route)) });
+                res_dict.push_back({ "unique_stop_count"s, json::Node(static_cast<int>(stat.unique_stops)) });
+            }
+}*/
+
+void JsonReader::AddStopBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id){
+    using namespace std::literals;
+    const std::string& name = FindValue(this_map, "name")->AsString();
+    const auto* info = tc.GetStopInformation(name);
+    //res_dict.push_back({ "request_id"s, json::Node(id) });//-
+    builder.Key("request_id"s).Value(json::Node(id));//+
+    if (!info) {
+        //res_dict.push_back({ "error_message"s, json::Node("not found"s) });//-
+        builder.Key("error_message"s).Value(json::Node("not found"s));//+
+    }
+    else {
+        json::Array buses_node;
+        for (const auto& b : *info) {
+            buses_node.push_back(json::Node(std::string(b)));
+        }
+        //res_dict.push_back({ "buses"s, json::Node(std::move(buses_node)) });//-
+        builder.Key("buses"s).Value(json::Node(std::move(buses_node)));//+
+    }
+}
+
+void JsonReader::AddBusBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id){
+    using namespace std::literals;
+    const std::string& name = FindValue(this_map, "name")->AsString();
+    const auto* bus = tc.GetBus(name);
+    //res_dict.push_back({ "request_id"s, json::Node(id) });//-
+    builder.Key("request_id"s).Value(json::Node(id));//+
+    if (!bus) {
+        //res_dict.push_back({ "error_message"s, json::Node("not found"s) });//-
+        builder.Key("error_message"s).Value(json::Node("not found"s));//+
+    }
+    else {
+        auto stat = tc.GetBusInfo(bus);
+        //res_dict.push_back({ "curvature"s, json::Node(stat.curvature) });//-
+        builder.Key("curvature"s).Value(json::Node(stat.curvature));//+
+        //res_dict.push_back({ "route_length"s, json::Node(static_cast<double>(stat.route_length)) });//-
+        builder.Key("route_length"s).Value(json::Node(static_cast<double>(stat.route_length)));//+
+        //res_dict.push_back({ "stop_count"s, json::Node(static_cast<int>(stat.stops_on_route)) });//-
+        builder.Key("stop_count"s).Value(json::Node(static_cast<int>(stat.stops_on_route)));//+
+        //res_dict.push_back({ "unique_stop_count"s, json::Node(static_cast<int>(stat.unique_stops)) });//-
+        builder.Key("unique_stop_count"s).Value(json::Node(static_cast<int>(stat.unique_stops)));//+
+    }
+}
+
 // десериализация
 json::Node JsonReader::ExecuteStatRequests(const transport::TransportCatalogue& tc, const json::Node& root) {
     using namespace std::literals;
-    json::Array response;
+    json::Builder builder;//+
+    //json::Array response;//-
+    builder.StartArray();//+
     const auto& root_map = root.AsMap();
     const json::Node* stat_requests = FindValue(root_map, "stat_requests");
 
-    if (!stat_requests) return json::Node(response);
+    //if (!stat_requests) return json::Node(response);
+    if (!stat_requests) return json::Node(json::Array{});
 
     for (const auto& req : stat_requests->AsArray()) {
         const auto& this_map = req.AsMap();
         int id = FindValue(this_map, "id")->AsInt();
         std::string type = FindValue(this_map, "type")->AsString();
-
-        json::Dict res_dict;
+        builder.StartDict();//+
+        //json::Dict res_dict;//-
 
         if (type == "Bus") {
-            AddBus(res_dict, tc, this_map, id);
+            //AddBus(res_dict, tc, this_map, id);//-
+            AddBusBuilder(builder, tc, this_map, id);//+
         }
         else if (type == "Stop") {
-            AddStop(res_dict, tc, this_map, id);
+            //AddStop(res_dict, tc, this_map, id);//-
+            AddStopBuilder(builder, tc, this_map, id);//+
         }
         else if(type == "Map"){
             const std::ostringstream& picture = GetMap();
             std::string picture_in_string = picture.str();
-            res_dict.push_back({"map", picture_in_string});
-            res_dict.push_back({"request_id", json::Node(id)});
+            //res_dict.push_back({"map", picture_in_string});//-
+            builder.Key("map"s).Value(picture_in_string);//+
+            //res_dict.push_back({"request_id", json::Node(id)});//-
+            builder.Key("request_id"s).Value(json::Node(id));//+
         }
-        response.push_back(json::Node(std::move(res_dict)));
+        builder.EndDict();//+
+        //response.push_back(json::Node(std::move(res_dict)));//-
     }
-    return json::Node(std::move(response));
+    builder.EndArray();//+
+    //return json::Node(std::move(response));//-
+    return builder.Build();
 }
