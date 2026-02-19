@@ -15,6 +15,8 @@ int main() {
     JsonReader json_reader;
     json_reader.ReadAndExecuteBaseRequests(tc, root);
 
+    tc.BuildGraph();
+
     json::Node result = json_reader.ExecuteStatRequests(tc, root);
     std::ostringstream out;
     json::Print(json::Document(result), out);

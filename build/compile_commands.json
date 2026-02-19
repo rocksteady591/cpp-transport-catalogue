@@ -1,44 +1,50 @@
 [
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/main.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/main.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/main.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/main.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\main.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\main.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/main.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/main.cpp.obj"
 },
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/geo.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/geo.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/geo.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/geo.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\geo.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\geo.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/geo.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/geo.cpp.obj"
 },
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/json.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/json.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\json.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\json.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/json.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/json.cpp.obj"
 },
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/json_reader.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json_reader.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/json_reader.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/json_reader.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\json_reader.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\json_reader.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/json_reader.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/json_reader.cpp.obj"
 },
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/map_renderer.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\map_renderer.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\map_renderer.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/map_renderer.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/map_renderer.cpp.obj"
 },
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/svg.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/svg.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\svg.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\svg.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/svg.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/svg.cpp.obj"
 },
 {
-  "directory": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/build",
-  "command": "/usr/bin/clang++  -I/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue -g -std=gnu++20 -o CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o -c /home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp",
-  "file": "/home/hyperion/Документы/transport-catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp",
-  "output": "CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.o"
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\transport_catalogue.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\transport_catalogue.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/transport_catalogue.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/transport_catalogue.cpp.obj"
+},
+{
+  "directory": "D:/transport_catalogue/cpp-transport-catalogue/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\18\\Insiders\\VC\\Tools\\Llvm\\bin\\clang.exe -ID:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\transport_catalogue.dir\\json_builder.cpp.obj -c D:\\transport_catalogue\\cpp-transport-catalogue\\TransportCatalogue\\json_builder.cpp",
+  "file": "D:/transport_catalogue/cpp-transport-catalogue/TransportCatalogue/json_builder.cpp",
+  "output": "D:/transport_catalogue/cpp-transport-catalogue/build/CMakeFiles/transport_catalogue.dir/json_builder.cpp.obj"
 }
 ]

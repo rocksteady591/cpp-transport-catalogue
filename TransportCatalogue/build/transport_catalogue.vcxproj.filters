@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\main.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\geo.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\geo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\json.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\json.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\json_reader.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\json_reader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\map_renderer.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\map_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\request_handler.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\svg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\svg.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\transport_catalogue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\pracis\transport_catalogue\TransportCatalogue\transport_catalogue.cpp">
+    <ClCompile Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\json_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\pracis\transport_catalogue\TransportCatalogue\CMakeLists.txt" />
+    <CustomBuild Include="D:\transport_catalogue\cpp-transport-catalogue\TransportCatalogue\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{B5A17052-1267-346D-814A-7CECE7853262}</UniqueIdentifier>
+      <UniqueIdentifier>{50665CE9-B8DC-31DA-A1CF-61F19C340242}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

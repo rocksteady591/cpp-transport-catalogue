@@ -5,9 +5,9 @@
 		<BuildType Name="Release"/>
 		<BuildType Name="MinSizeRel"/>
 		<BuildType Name="RelWithDebInfo"/>
-		<Platform Name="ARM64"/>
+		<Platform Name="x64"/>
 	</Configurations>
-	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="90796264-1c7b-341c-aacd-559534ad971b" DefaultStartup="true">
+	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="4b907337-a856-3c50-9383-679572d47b9d" DefaultStartup="true">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="transport_catalogue.vcxproj"/>
 		<Build Solution="Debug|*" Project="false"/>
@@ -15,8 +15,8 @@
 		<Build Solution="MinSizeRel|*" Project="false"/>
 		<Build Solution="RelWithDebInfo|*" Project="false"/>
 	</Project>
-	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="540db398-ef9a-3bbf-97fe-5a6365fd9fa9"/>
-	<Project Path="transport_catalogue.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="379f2b9f-7cfb-3a22-81ce-587996d56cbc">
+	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="87dafaa4-f1ed-3527-8cc6-282c9ab47fe5"/>
+	<Project Path="transport_catalogue.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="dc0a98ab-8a4c-3ac7-baa2-cde78e2269a3">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
 </Solution>
