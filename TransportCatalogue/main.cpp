@@ -1,6 +1,8 @@
 ﻿#include "transport_catalogue.h"
 #include "json.h"
 #include "json_reader.h"
+#include "graph.h"
+#include "transport_router.h"
 #include <sstream>
 #include <iostream>
 
@@ -15,9 +17,11 @@ int main() {
     JsonReader json_reader;
     json_reader.ReadAndExecuteBaseRequests(tc, root);
 
-    tc.BuildGraph();
+    Graph graph;
+    graph.BuildGraph(tc);
+    TransportRouter router(graph);
 
-    json::Node result = json_reader.ExecuteStatRequests(tc, root);
+    json::Node result = json_reader.ExecuteStatRequests(tc, root, router);
     std::ostringstream out;
     json::Print(json::Document(result), out);
     //std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();

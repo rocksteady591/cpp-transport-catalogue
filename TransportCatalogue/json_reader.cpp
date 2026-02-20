@@ -2,6 +2,7 @@
 #include "json.h"
 #include "json_builder.h"
 #include "map_renderer.h"
+#include "transport_router.h"
 
 
 static const json::Node* FindValue(const json::Dict& dict, const std::string_view key) {
@@ -165,14 +166,14 @@ void JsonReader::AddBusBuilder(json::Builder& builder, const transport::Transpor
     }
 }
 
-void JsonReader::AddRouteBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id) {
+void JsonReader::AddRouteBuilder(json::Builder& builder, const json::Dict& this_map, const int id, const TransportRouter& router) {
     using namespace std::literals;
     const std::string& from = FindValue(this_map, "from")->AsString();
     const std::string& to = FindValue(this_map, "to")->AsString();
 
     builder.Key("request_id"s).Value(json::Node(id));
 
-    transport::RouteResult route = tc.FindRoute(from, to);
+    RouteResult route = router.FindRoute(from, to);
 
     if (!route.found) {
         builder.Key("error_message"s).Value(json::Node("not found"s));
@@ -201,7 +202,7 @@ void JsonReader::AddRouteBuilder(json::Builder& builder, const transport::Transp
     builder.EndArray();
 }
 
-json::Node JsonReader::ExecuteStatRequests(const transport::TransportCatalogue& tc, const json::Node& root) {
+json::Node JsonReader::ExecuteStatRequests(const transport::TransportCatalogue& tc, const json::Node& root, const TransportRouter& router) {
     using namespace std::literals;
     json::Builder builder;
     builder.StartArray();
@@ -228,7 +229,7 @@ json::Node JsonReader::ExecuteStatRequests(const transport::TransportCatalogue& 
             builder.Key("request_id"s).Value(json::Node(id));
         }
         else if (type == "Route") {
-            AddRouteBuilder(builder, tc, this_map, id);
+            AddRouteBuilder(builder,  this_map, id, router);
         }
 
         builder.EndDict();

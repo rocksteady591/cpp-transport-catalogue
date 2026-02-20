@@ -14,6 +14,7 @@ add_executable(transport_catalogue
     svg.cpp
     transport_catalogue.cpp
     json_builder.cpp
+    transport_router.cpp
 )
 
 target_include_directories(transport_catalogue PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

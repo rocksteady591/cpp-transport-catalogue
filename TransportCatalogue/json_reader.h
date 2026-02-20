@@ -2,6 +2,7 @@
 #include "json.h"
 #include "json_builder.h"
 #include "transport_catalogue.h"
+#include "transport_router.h"
 #include <sstream>
 
 class JsonReader {
@@ -10,7 +11,7 @@ public:
     const std::ostringstream& GetMap();
 
     json::Node ExecuteStatRequests(const transport::TransportCatalogue& tc,
-        const json::Node& root);
+        const json::Node& root, const TransportRouter& router);
 
     void AddRoutingSettings(transport::TransportCatalogue& tc,
         const json::Node& root);
@@ -21,6 +22,6 @@ private:
     void AddMap(const json::Dict& root_map, transport::TransportCatalogue& tc);
     void AddStopBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
     void AddBusBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
-    void AddRouteBuilder(json::Builder& builder, const transport::TransportCatalogue& tc, const json::Dict& this_map, const int id);
+    void AddRouteBuilder(json::Builder& builder, const json::Dict& this_map, const int id, const TransportRouter& router);
     std::ostringstream map_out_;
 };
