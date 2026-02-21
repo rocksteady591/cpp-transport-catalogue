@@ -3,7 +3,9 @@
 #include <algorithm>
 #include <limits>
 
-TransportRouter::TransportRouter(const Graph& graph) : graph_(graph){}
+TransportRouter::TransportRouter(const transport::TransportCatalogue& tc){
+    graph_.BuildGraph(tc);
+}
 
 RouteResult TransportRouter::FindRoute(const std::string& from, const std::string& to) const {
         RouteResult result;

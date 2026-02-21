@@ -20,9 +20,9 @@
 
 class TransportRouter{
 public:
-    TransportRouter(const Graph& graph);
+    TransportRouter(const transport::TransportCatalogue& tc);
     // Ищет оптимальный маршрут между двумя остановками
     RouteResult FindRoute(const std::string& from, const std::string& to) const;
 private:
-    const Graph& graph_;
+    Graph graph_;
 };
